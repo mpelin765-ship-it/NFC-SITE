@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NFC Button</title>
+<title>NFC Prank</title>
 
 <style>
 body {
@@ -16,42 +17,59 @@ body {
 }
 
 .button {
-    width: 220px;
-    height: 220px;
+    width: 230px;
+    height: 230px;
     border-radius: 50%;
-    background-image: url("button.jpg");
-    background-size: cover;
-    background-position: center;
+    background: transparent;
     border: none;
+    padding: 0;
     cursor: pointer;
-    box-shadow: 0 0 40px rgba(255,0,100,0.6);
+    box-shadow: 0 0 35px rgba(255,0,120,0.6);
     transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.button img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 .button:active {
     transform: scale(0.9);
-    box-shadow: 0 0 20px rgba(255,0,100,0.9);
 }
 </style>
 </head>
 
 <body>
 
-<button class="button" onclick="playSound()"></button>
+<button class="button">
+    <img src="button.png" alt="button">
+</button>
 
 <audio id="sound" src="sound.mp3"></audio>
 
 <script>
+let played = false;
+
 function playSound() {
+    if (played) return;
+    played = true;
+
     const audio = document.getElementById("sound");
     audio.currentTime = 0;
     audio.play();
 
     if (navigator.vibrate) {
-        navigator.vibrate(60);
+        navigator.vibrate(80);
     }
 }
+
+// звук при первом касании ЛЮБОГО места
+document.addEventListener("touchstart", playSound, { once: true });
+document.addEventListener("click", playSound, { once: true });
 </script>
 
 </body>
 </html>
+
