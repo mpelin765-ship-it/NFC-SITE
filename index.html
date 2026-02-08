@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NFC Button</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg,#0f0f0f,#1f1f1f);
+    font-family: Arial, sans-serif;
+    color: white;
+    text-align: center;
+}
+
+.container {
+    animation: fadeIn 1s ease;
+}
+
+h1 {
+    margin-bottom: 40px;
+}
+
+button {
+    font-size: 30px;
+    padding: 25px 60px;
+    border: none;
+    border-radius: 25px;
+    background: #ff0055;
+    color: white;
+    cursor: pointer;
+    transition: 0.15s;
+    box-shadow: 0 10px 30px rgba(255,0,85,0.4);
+}
+
+button:active {
+    transform: scale(0.92);
+}
+
+@keyframes fadeIn {
+    from {opacity:0; transform:translateY(20px);}
+    to {opacity:1; transform:translateY(0);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>НАЖМИ 😈</h1>
+    <button onclick="playSound()">PLAY</button>
+</div>
+
+<audio id="sound" src="sound.mp3"></audio>
+
+<script>
+function playSound() {
+    const audio = document.getElementById("sound");
+    audio.currentTime = 0;
+    audio.play();
+
+    if (navigator.vibrate) {
+        navigator.vibrate(50);
+    }
+}
+</script>
+
+</body>
+</html>
