@@ -12,49 +12,32 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg,#0f0f0f,#1f1f1f);
-    font-family: Arial, sans-serif;
-    color: white;
-    text-align: center;
+    background: radial-gradient(circle, #111, #000);
 }
 
-.container {
-    animation: fadeIn 1s ease;
-}
-
-h1 {
-    margin-bottom: 40px;
-}
-
-button {
-    font-size: 30px;
-    padding: 25px 60px;
+.button {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background-image: url("button.jpg");
+    background-size: cover;
+    background-position: center;
     border: none;
-    border-radius: 25px;
-    background: #ff0055;
-    color: white;
     cursor: pointer;
-    transition: 0.15s;
-    box-shadow: 0 10px 30px rgba(255,0,85,0.4);
+    box-shadow: 0 0 40px rgba(255,0,100,0.6);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-button:active {
-    transform: scale(0.92);
-}
-
-@keyframes fadeIn {
-    from {opacity:0; transform:translateY(20px);}
-    to {opacity:1; transform:translateY(0);}
+.button:active {
+    transform: scale(0.9);
+    box-shadow: 0 0 20px rgba(255,0,100,0.9);
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
-    <h1>НАЖМИ 😈</h1>
-    <button onclick="playSound()">PLAY</button>
-</div>
+<button class="button" onclick="playSound()"></button>
 
 <audio id="sound" src="sound.mp3"></audio>
 
@@ -65,7 +48,7 @@ function playSound() {
     audio.play();
 
     if (navigator.vibrate) {
-        navigator.vibrate(50);
+        navigator.vibrate(60);
     }
 }
 </script>
